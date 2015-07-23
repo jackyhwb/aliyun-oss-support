@@ -1,5 +1,11 @@
 <?php
 /**
+ * 2015-07-23 hu modefiy_img_url 这里由img_url改为static_url，因为阿里云图片服务只支持绑定域名访问
+ * 
+ * 
+ * /
+
+/**
  * Plugin Name: 阿里云附件plus
  * Plugin URI: "http://yii.im/posts/aliyun-oss-support-plugin-for-wordpress"
  * Description: 使用阿里云存储OSS作为附件存储空间。This is a plugin that used Aliyun Cloud Storage(Aliyun OSS) for attachments remote saving.
@@ -228,7 +234,7 @@ function modefiy_img_url($url, $post_id) {
     $oss_options = get_option('oss_options', TRUE);
 
     if(wp_attachment_is_image($post_id)){
-        $img_baseurl = rtrim($oss_options['img_url'], '/');
+        $img_baseurl = rtrim($oss_options['static_url'], '/'); //这里由img_url改为static_url，因为阿里云图片服务只支持绑定域名访问 hu 2015-07-23
         if(rtrim($oss_options['path'], '/') != ""){
             $img_baseurl = $img_baseurl .'/'. rtrim($oss_options['path'], '/');
         }
